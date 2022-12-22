@@ -1,0 +1,608 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{208261EA-61CD-434D-9AA3-D9446CE41F03}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EconomicShop</RootNamespace>
+    <AssemblyName>EconomicShop.Web</AssemblyName>
+    <LangVersion>8.0</LangVersion>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44348</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.3\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.3\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=3.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.2.2\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.2.2\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.2.2\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.2.2\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.2.0.1\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.9\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.9\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Assets\css\argon-dashboard.css" />
+    <Content Include="Areas\Admin\Assets\css\argon-dashboard.min.css" />
+    <Content Include="Areas\Admin\Assets\css\nucleo-icons.css" />
+    <Content Include="Areas\Admin\Assets\css\nucleo-svg.css" />
+    <Content Include="Areas\Admin\Assets\fonts\nucleo-icons.svg" />
+    <Content Include="Areas\Admin\Assets\img\apple-icon.png" />
+    <Content Include="Areas\Admin\Assets\img\bg-profile.jpg" />
+    <Content Include="Areas\Admin\Assets\img\bg1.jpg" />
+    <Content Include="Areas\Admin\Assets\img\bruce-mars.jpg" />
+    <Content Include="Areas\Admin\Assets\img\carousel-1.jpg" />
+    <Content Include="Areas\Admin\Assets\img\carousel-2.jpg" />
+    <Content Include="Areas\Admin\Assets\img\carousel-3.jpg" />
+    <Content Include="Areas\Admin\Assets\img\curved-images\curved-10.jpg" />
+    <Content Include="Areas\Admin\Assets\img\curved-images\curved-11.jpg" />
+    <Content Include="Areas\Admin\Assets\img\curved-images\curved-6.jpg" />
+    <Content Include="Areas\Admin\Assets\img\curved-images\curved-8.jpg" />
+    <Content Include="Areas\Admin\Assets\img\curved-images\curved0.jpg" />
+    <Content Include="Areas\Admin\Assets\img\curved-images\curved1.jpg" />
+    <Content Include="Areas\Admin\Assets\img\curved-images\curved10.jpg" />
+    <Content Include="Areas\Admin\Assets\img\curved-images\curved11-small.jpg" />
+    <Content Include="Areas\Admin\Assets\img\curved-images\curved11.jpg" />
+    <Content Include="Areas\Admin\Assets\img\curved-images\curved12.jpg" />
+    <Content Include="Areas\Admin\Assets\img\curved-images\curved13.jpg" />
+    <Content Include="Areas\Admin\Assets\img\curved-images\curved14.jpg" />
+    <Content Include="Areas\Admin\Assets\img\curved-images\curved19.jpg" />
+    <Content Include="Areas\Admin\Assets\img\curved-images\curved2.jpg" />
+    <Content Include="Areas\Admin\Assets\img\curved-images\curved21.jpg" />
+    <Content Include="Areas\Admin\Assets\img\curved-images\curved3.jpg" />
+    <Content Include="Areas\Admin\Assets\img\curved-images\curved4.jpg" />
+    <Content Include="Areas\Admin\Assets\img\curved-images\curved5-small.jpg" />
+    <Content Include="Areas\Admin\Assets\img\curved-images\curved5.jpg" />
+    <Content Include="Areas\Admin\Assets\img\curved-images\curved6-small.jpg" />
+    <Content Include="Areas\Admin\Assets\img\curved-images\curved6.jpg" />
+    <Content Include="Areas\Admin\Assets\img\curved-images\curved7.jpg" />
+    <Content Include="Areas\Admin\Assets\img\curved-images\curved8.jpg" />
+    <Content Include="Areas\Admin\Assets\img\curved-images\curved9.jpg" />
+    <Content Include="Areas\Admin\Assets\img\curved-images\white-curved.jpeg" />
+    <Content Include="Areas\Admin\Assets\img\down-arrow-dark.svg" />
+    <Content Include="Areas\Admin\Assets\img\down-arrow-white.svg" />
+    <Content Include="Areas\Admin\Assets\img\down-arrow.svg" />
+    <Content Include="Areas\Admin\Assets\img\favicon.png" />
+    <Content Include="Areas\Admin\Assets\img\home-decor-1.jpg" />
+    <Content Include="Areas\Admin\Assets\img\home-decor-2.jpg" />
+    <Content Include="Areas\Admin\Assets\img\home-decor-3.jpg" />
+    <Content Include="Areas\Admin\Assets\img\icons\flags\AU.png" />
+    <Content Include="Areas\Admin\Assets\img\icons\flags\BR.png" />
+    <Content Include="Areas\Admin\Assets\img\icons\flags\DE.png" />
+    <Content Include="Areas\Admin\Assets\img\icons\flags\GB.png" />
+    <Content Include="Areas\Admin\Assets\img\icons\flags\US.png" />
+    <Content Include="Areas\Admin\Assets\img\illustrations\icon-documentation.svg" />
+    <Content Include="Areas\Admin\Assets\img\illustrations\rocket-white.png" />
+    <Content Include="Areas\Admin\Assets\img\ivana-square.jpg" />
+    <Content Include="Areas\Admin\Assets\img\ivancik.jpg" />
+    <Content Include="Areas\Admin\Assets\img\kal-visuals-square.jpg" />
+    <Content Include="Areas\Admin\Assets\img\logo-ct-dark.png" />
+    <Content Include="Areas\Admin\Assets\img\logo-ct.png" />
+    <Content Include="Areas\Admin\Assets\img\logos\mastercard.png" />
+    <Content Include="Areas\Admin\Assets\img\logos\visa.png" />
+    <Content Include="Areas\Admin\Assets\img\marie.jpg" />
+    <Content Include="Areas\Admin\Assets\img\shapes\pattern-lines.svg" />
+    <Content Include="Areas\Admin\Assets\img\shapes\shape-1.svg" />
+    <Content Include="Areas\Admin\Assets\img\shapes\shape-2.svg" />
+    <Content Include="Areas\Admin\Assets\img\shapes\shape-3.svg" />
+    <Content Include="Areas\Admin\Assets\img\shapes\wave-down.svg" />
+    <Content Include="Areas\Admin\Assets\img\shapes\wave-up.svg" />
+    <Content Include="Areas\Admin\Assets\img\shapes\waves-gray.svg" />
+    <Content Include="Areas\Admin\Assets\img\shapes\waves-white.svg" />
+    <Content Include="Areas\Admin\Assets\img\small-logos\icon-sun-cloud.png" />
+    <Content Include="Areas\Admin\Assets\img\small-logos\logo-atlassian.svg" />
+    <Content Include="Areas\Admin\Assets\img\small-logos\logo-invision.svg" />
+    <Content Include="Areas\Admin\Assets\img\small-logos\logo-jira.svg" />
+    <Content Include="Areas\Admin\Assets\img\small-logos\logo-slack.svg" />
+    <Content Include="Areas\Admin\Assets\img\small-logos\logo-spotify.svg" />
+    <Content Include="Areas\Admin\Assets\img\small-logos\logo-webdev.svg" />
+    <Content Include="Areas\Admin\Assets\img\small-logos\logo-xd.svg" />
+    <Content Include="Areas\Admin\Assets\img\team-1.jpg" />
+    <Content Include="Areas\Admin\Assets\img\team-2.jpg" />
+    <Content Include="Areas\Admin\Assets\img\team-3.jpg" />
+    <Content Include="Areas\Admin\Assets\img\team-4.jpg" />
+    <Content Include="Areas\Admin\Assets\img\theme\angular.jpg" />
+    <Content Include="Areas\Admin\Assets\img\theme\bootstrap.jpg" />
+    <Content Include="Areas\Admin\Assets\img\theme\dribbble.png" />
+    <Content Include="Areas\Admin\Assets\img\theme\dropbox.png" />
+    <Content Include="Areas\Admin\Assets\img\theme\mastercard.png" />
+    <Content Include="Areas\Admin\Assets\img\theme\paypal.png" />
+    <Content Include="Areas\Admin\Assets\img\theme\react.jpg" />
+    <Content Include="Areas\Admin\Assets\img\theme\sketch.jpg" />
+    <Content Include="Areas\Admin\Assets\img\theme\slack.png" />
+    <Content Include="Areas\Admin\Assets\img\theme\spotify.jpeg" />
+    <Content Include="Areas\Admin\Assets\img\theme\tim.png" />
+    <Content Include="Areas\Admin\Assets\img\theme\unass.jpg" />
+    <Content Include="Areas\Admin\Assets\img\theme\visa.png" />
+    <Content Include="Areas\Admin\Assets\img\theme\vue.jpg" />
+    <Content Include="Areas\Admin\Assets\img\vr-bg.jpg" />
+    <Content Include="Areas\Admin\Assets\js\argon-dashboard.js" />
+    <Content Include="Areas\Admin\Assets\js\argon-dashboard.min.js" />
+    <Content Include="Areas\Admin\Assets\js\core\bootstrap.bundle.min.js" />
+    <Content Include="Areas\Admin\Assets\js\core\bootstrap.min.js" />
+    <Content Include="Areas\Admin\Assets\js\core\popper.min.js" />
+    <Content Include="Areas\Admin\Assets\js\plugins\bootstrap-notify.js" />
+    <Content Include="Areas\Admin\Assets\js\plugins\Chart.extension.js" />
+    <Content Include="Areas\Admin\Assets\js\plugins\chartjs.min.js" />
+    <Content Include="Areas\Admin\Assets\js\plugins\perfect-scrollbar.min.js" />
+    <Content Include="Areas\Admin\Assets\js\plugins\smooth-scrollbar.min.js" />
+    <Content Include="Content\animate\animate.css" />
+    <Content Include="Content\animate\animate.min.css" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-grid.rtl.css" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Content\bootstrap-utilities.css" />
+    <Content Include="Content\bootstrap-utilities.min.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.rtl.css" />
+    <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.esm.js" />
+    <Content Include="Scripts\bootstrap.esm.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Admin\Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Areas\Admin\Assets\css\argon-dashboard.css.map" />
+    <Content Include="Areas\Admin\Assets\fonts\nucleo-icons.eot" />
+    <Content Include="Areas\Admin\Assets\fonts\nucleo-icons.ttf" />
+    <Content Include="Areas\Admin\Assets\fonts\nucleo-icons.woff" />
+    <Content Include="Areas\Admin\Assets\fonts\nucleo-icons.woff2" />
+    <Content Include="Areas\Admin\Assets\fonts\nucleo.eot" />
+    <Content Include="Areas\Admin\Assets\fonts\nucleo.ttf" />
+    <Content Include="Areas\Admin\Assets\fonts\nucleo.woff" />
+    <Content Include="Areas\Admin\Assets\fonts\nucleo.woff2" />
+    <Content Include="Areas\Admin\Assets\js\argon-dashboard.js.map" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\bootstrap-grid.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\bootstrap-reboot.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\bootstrap-utilities.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\bootstrap.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\forms\_floating-labels.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\forms\_form-check.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\forms\_form-control.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\forms\_form-range.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\forms\_form-select.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\forms\_form-text.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\forms\_input-group.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\forms\_labels.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\forms\_validation.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\helpers\_clearfix.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\helpers\_color-bg.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\helpers\_colored-links.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\helpers\_position.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\helpers\_ratio.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\helpers\_stacks.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\helpers\_stretched-link.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\helpers\_text-truncation.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\helpers\_visually-hidden.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\helpers\_vr.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\mixins\_alert.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\mixins\_backdrop.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\mixins\_border-radius.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\mixins\_box-shadow.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\mixins\_breakpoints.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\mixins\_buttons.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\mixins\_caret.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\mixins\_clearfix.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\mixins\_color-scheme.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\mixins\_container.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\mixins\_deprecate.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\mixins\_forms.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\mixins\_gradients.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\mixins\_grid.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\mixins\_image.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\mixins\_list-group.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\mixins\_lists.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\mixins\_pagination.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\mixins\_reset-text.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\mixins\_resize.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\mixins\_table-variants.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\mixins\_text-truncate.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\mixins\_transition.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\mixins\_utilities.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\mixins\_visually-hidden.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\utilities\_api.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\vendor\_rfs.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_accordion.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_alert.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_badge.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_breadcrumb.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_button-group.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_buttons.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_card.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_carousel.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_close.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_containers.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_dropdown.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_forms.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_functions.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_grid.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_helpers.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_images.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_list-group.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_maps.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_mixins.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_modal.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_nav.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_navbar.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_offcanvas.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_pagination.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_placeholders.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_popover.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_progress.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_reboot.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_root.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_spinners.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_tables.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_toasts.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_tooltip.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_transitions.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_type.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_utilities.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\bootstrap\_variables.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\cards\card-background.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\cards\card-carousel.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\custom\_styles.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\custom\_variables.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\forms\_form-check.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\forms\_form-select.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\forms\_form-switch.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\forms\_forms.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\forms\_input-group.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\forms\_inputs.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\forms\_labels.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\mixins\mixins.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\mixins\_badge.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\mixins\_colored-shadows.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\mixins\_hover.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\mixins\_social-buttons.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\plugins\free\plugins.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\plugins\free\_flatpickr.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\plugins\free\_nouislider.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\plugins\free\_perfect-scrollbar.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\plugins\free\_prism.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\theme.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\variables\_animations.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\variables\_avatars.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\variables\_badge.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\variables\_breadcrumb.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\variables\_cards-extend.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\variables\_cards.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\variables\_choices.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\variables\_dark-version.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\variables\_dropdowns.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\variables\_fixed-plugin.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\variables\_form-switch.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\variables\_full-calendar.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\variables\_header.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\variables\_info-areas.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\variables\_misc-extend.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\variables\_misc.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\variables\_navbar-vertical.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\variables\_navbar.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\variables\_pagination.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\variables\_rtl.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\variables\_social-buttons.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\variables\_table.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\variables\_timeline.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\variables\_utilities-extend.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\variables\_utilities.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\variables\_virtual-reality.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\_alert.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\_avatars.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\_badge.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\_breadcrumbs.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\_buttons.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\_cards.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\_dark-version.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\_dropdown.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\_dropup.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\_fixed-plugin.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\_footer.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\_forms.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\_gradients.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\_header.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\_info-areas.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\_misc.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\_nav.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\_navbar-vertical.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\_navbar.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\_pagination.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\_popovers.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\_progress.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\_rtl.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\_social-buttons.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\_tables.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\_tilt.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\_timeline.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\_tooltips.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\_typography.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\_utilities-extend.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\_utilities.scss" />
+    <Content Include="Areas\Admin\Assets\scss\argon-dashboard\_variables.scss" />
+    <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
+    <None Include="Scripts\jquery-3.6.1.intellisense.js" />
+    <Content Include="Scripts\counterup\counterup.min.js" />
+    <Content Include="Scripts\easing\easing.js" />
+    <Content Include="Scripts\easing\easing.min.js" />
+    <Content Include="Scripts\jquery-3.6.1.js" />
+    <Content Include="Scripts\jquery-3.6.1.min.js" />
+    <Content Include="Scripts\jquery-3.6.1.slim.js" />
+    <Content Include="Scripts\jquery-3.6.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\owlcarousel\assets\ajax-loader.gif" />
+    <Content Include="Scripts\owlcarousel\assets\owl.carousel.css" />
+    <Content Include="Scripts\owlcarousel\assets\owl.carousel.min.css" />
+    <Content Include="Scripts\owlcarousel\assets\owl.theme.default.css" />
+    <Content Include="Scripts\owlcarousel\assets\owl.theme.default.min.css" />
+    <Content Include="Scripts\owlcarousel\assets\owl.theme.green.css" />
+    <Content Include="Scripts\owlcarousel\assets\owl.theme.green.min.css" />
+    <Content Include="Scripts\owlcarousel\assets\owl.video.play.png" />
+    <Content Include="Scripts\owlcarousel\owl.carousel.js" />
+    <Content Include="Scripts\owlcarousel\owl.carousel.min.js" />
+    <Content Include="Scripts\waypoints\waypoints.min.js" />
+    <Content Include="Scripts\wow\wow.js" />
+    <Content Include="Scripts\wow\wow.min.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\owlcarousel\LICENSE" />
+    <Content Include="Scripts\waypoints\links.php" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap.rtl.min.css.map" />
+    <Content Include="Content\bootstrap.rtl.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Content\bootstrap-utilities.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.esm.min.js.map" />
+    <Content Include="Scripts\bootstrap.esm.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Scripts\jquery-3.6.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.6.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EconomicShop.Data\EconomicShop.Data.csproj">
+      <Project>{E3A3B068-FE3D-497D-9251-F1407816F3B1}</Project>
+      <Name>EconomicShop.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EconomicShop.Model\EconomicShop.Model.csproj">
+      <Project>{A792C2EB-C80A-4CBD-AFDC-95F3EA341A04}</Project>
+      <Name>EconomicShop.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50386</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44348/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>
