@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EconomicShop.Model.Models
 {
@@ -18,6 +14,5 @@ namespace EconomicShop.Model.Models
 
         public string StackTrace { get; set; }
         public DateTime CreatedDate { get; set; }
-
     }
 }

@@ -6,7 +6,7 @@ namespace EconomicShop.Model.Models
     [Table("OrderDetails")]
     public class OrderDetail
     {
-        [Key]       
+        [Key]
         [Column(Order = 0)]
         public int OrderID { set; get; }
 

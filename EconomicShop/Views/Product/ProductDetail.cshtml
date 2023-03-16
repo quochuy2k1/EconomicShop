@@ -1,0 +1,273 @@
+﻿
+@{
+    ViewBag.Title = "ProductDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using EconomicShop.ViewModel.Common.Product
+@model ProductDetailViewModel
+
+@section embeddedCss{
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@('@')splidejs/splide@4.1.4/dist/css/splide.min.css">
+    @*<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@('@')splidejs/splide@4.1.4/dist/css/themes/splide-skyblue.min.css">*@
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@('@')splidejs/splide@4.1.4/dist/css/themes/splide-default.min.css">
+
+}
+
+<style>
+
+    .splide__slide img {
+        width: 100% !important;
+    }
+
+    .thumbnails {
+        display: flex;
+        margin: 1rem auto 0;
+        padding: 0;
+        justify-content: center;
+    }
+
+
+    .thumbnail {
+        width: 70px;
+        height: 70px;
+        overflow: hidden;
+        list-style: none;
+        margin: 0 0.2rem;
+        cursor: pointer;
+    }
+
+
+        .thumbnail img {
+            width: 100% !important;
+            height: auto !important;
+        }
+</style>
+
+<div class="container mt-5 mb-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-12">
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="@Url.Action("Index", "Product")">Sản phẩm </a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Chi tiết sản phẩm</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="col-md-10">
+            <div class="card">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="images p-3">
+                            @*<div class="text-center p-4"> <img id="main-image" src="~/Images//Products/@Model.Image" width="250" /> </div>
+                                <div class="thumbnail text-center">
+                                    <img onclick="change_image(this)" src="https://i.imgur.com/Rx7uKd0.jpg" width="70">
+                                    <img onclick="change_image(this)" src="https://i.imgur.com/Dhebu4F.jpg" width="70">
+                                </div>*@
+                            <div id="main-slider" class="splide">
+                                <div class="splide__track">
+                                    <ul class="splide__list">
+                                        <li class="splide__slide">
+                                            <img src="~/Images/Products/@Model.Image" />
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+
+
+                            <ul id="thumbnails" class="thumbnails">
+                                <li class="thumbnail">
+                                    <img src="~/Images/Products/@Model.Image" />
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="product p-4" data-product="@Model.Id">
+
+                            <div class="mt-4 mb-3">
+
+                                <h5 class="text-uppercase">@Model.Name | @Model.Content</h5>
+                                <div class="price d-flex flex-row align-items-center">
+                                    <div class="ml-2 text-decoration-line-through">
+                                        <small class="dis-price text-muted" style="font-weight: 500; font-size: 16px">
+                                            @Html.FormatValue(@Model.OriginalPrice, "{0:#,###}")đ
+                                        </small>
+                                    </div>
+                                    <div class="px-3">
+                                        <span class="text-danger fw-bold " style="font-size: 2rem" id="price" data-price="@Model.Price">@Html.FormatValue(@Model.Price, "{0:#,###}")đ</span>
+                                    </div>
+                                    <span class="badge text-bg-warning">Giảm @Model.Promotion.Value.ToString("G29")%</span>
+                                </div>
+                            </div>
+                            <p class="view-count">Lược xem: @Model.ViewCount</p>
+                            <p class="warranty">
+                                Bảo hành: @{
+                                    var defalult = 0;
+                                    if (Model.Warranty != null)
+                                    {
+                                        <span> @Model.Warranty tháng</span>
+                                    }
+                                    else
+                                    {
+                                        <span>không đề cập</span> 
+                                    }
+                                }
+                            </p>
+                            <div class="d-flex gap-3 align-items-center mb-3">
+                                <span class="d-block">Số lượng đặt hàng: </span>
+                                <div class="input-group  w-25">
+                                    <button class="btn btn-outline-secondary" type="button" id="increment" style=" border-top-left-radius: 3px !important; border-bottom-left-radius: 3px !important;" onclick="$('#quantity-order').get(0).value++">+</button>
+                                    <input type="text" id="quantity-order" class="form-control text-center" placeholder="" value="0" aria-label="Nhập số lượng đặt hàng" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                    <button class="btn btn-outline-secondary" type="button" id="decrement" style=" border-top-right-radius: 3px !important; border-bottom-right-radius: 3px !important;" onclick="if($('#quantity-order').get(0).value > 0) $('#quantity-order').get(0).value--">-</button>
+
+                                </div>
+                            </div>
+                            <div class="cart mt-4 align-items-center">
+                                <button class="btn btn-danger text-uppercase mr-2 px-4 d-flex align-items-center gap-2" style="height: 3.5rem" id="add-to-cart">
+                                    <span class="material-symbols-rounded">
+                                        shopping_cart
+                                    </span>
+                                    <span>Thêm vào giỏ hàng</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 mt-3">
+            <div class="card">
+                <div class="card-header py-3">
+                    <h5 class="text-uppercase" style="font-weight:400 !important">Mô tả sản phẩm</h5>
+                </div>
+                <div class="card-body px-5">
+
+                    @Html.Raw(Model.Description)
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section embeddedScript{
+    <script src="https://cdn.jsdelivr.net/npm/@('@')splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+}
+@section scripts{
+
+
+    <script>
+        @*function change_image(image) {
+
+            var container = document.getElementById("main-image");
+
+            container.src = image.src;
+        }
+
+
+
+        document.addEventListener("DOMContentLoaded", function (event) {
+
+
+
+
+
+
+
+        });*@
+        $(document).ready(function () {
+            var splide = new Splide('#main-slider', {
+                pagination: false,
+            });
+
+
+            var thumbnails = document.getElementsByClassName('thumbnail');
+            var current;
+
+
+            for (var i = 0; i < thumbnails.length; i++) {
+                initThumbnail(thumbnails[i], i);
+            }
+
+
+            function initThumbnail(thumbnail, index) {
+                thumbnail.addEventListener('click', function () {
+                    splide.go(index);
+                });
+            }
+
+
+            splide.on('mounted move', function () {
+                var thumbnail = thumbnails[splide.index];
+
+
+                if (thumbnail) {
+                    if (current) {
+                        current.classList.remove('is-active');
+                    }
+
+
+                    thumbnail.classList.add('is-active');
+                    current = thumbnail;
+                }
+            });
+
+
+            splide.mount();
+
+            /* */
+
+            $("#add-to-cart").on("click", (e) => {
+                const ProductId = $(".product").attr("data-product");
+                const Quantity = $("#quantity-order").val();
+                const Price = $("#price").attr("data-price");
+
+                console.log(ProductId, Quantity, Price)
+
+                $.ajax({
+                    type: "post",
+                    url: "/Cart/AddToCart",
+                    data: {
+                        ProductId,
+                        Quantity,
+                        Price
+                    },
+                    cache: false,
+                    success: function (data) {
+
+                        if (data.status === "success") {
+
+                            //
+                            Toastify({
+                                text: data.result,
+                                duration: 5000,
+                                close: true,
+                                gravity: "top", // `top` or `bottom`
+                                position: "right", // `left`, `center` or `right`
+                                stopOnFocus: true, // Prevents dismissing of toast on hover
+                                style: {
+                                    background: "linear-gradient(to right, #56C596, #7BE495)",
+                                },
+                                onClick: function () { } // Callback after click
+                            }).showToast();
+                        }
+
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr);
+                    }
+                });
+            })
+
+        });
+    </script>
+
+}
+

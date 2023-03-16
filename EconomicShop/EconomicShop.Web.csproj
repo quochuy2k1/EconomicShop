@@ -69,6 +69,9 @@
     <Reference Include="Microsoft.Owin, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.4.2.2\lib\net45\Microsoft.Owin.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.2.2\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Owin.Security, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Security.4.2.2\lib\net45\Microsoft.Owin.Security.dll</HintPath>
     </Reference>
@@ -88,6 +91,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Linq.Dynamic.Core, Version=1.2.24.0, Culture=neutral, PublicKeyToken=0f07ec44de6ac832, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Dynamic.Core.1.2.24\lib\net46\System.Linq.Dynamic.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -152,9 +158,18 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductCategoryManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductManagerController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\ProductCategoryController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -163,6 +178,7 @@
   <ItemGroup>
     <Content Include="Areas\Admin\Assets\css\argon-dashboard.css" />
     <Content Include="Areas\Admin\Assets\css\argon-dashboard.min.css" />
+    <Content Include="Areas\Admin\Assets\css\main.css" />
     <Content Include="Areas\Admin\Assets\css\nucleo-icons.css" />
     <Content Include="Areas\Admin\Assets\css\nucleo-svg.css" />
     <Content Include="Areas\Admin\Assets\fonts\nucleo-icons.svg" />
@@ -265,6 +281,12 @@
     <Content Include="Areas\Admin\Assets\js\plugins\chartjs.min.js" />
     <Content Include="Areas\Admin\Assets\js\plugins\perfect-scrollbar.min.js" />
     <Content Include="Areas\Admin\Assets\js\plugins\smooth-scrollbar.min.js" />
+    <Content Include="Assets\animate\animate.css" />
+    <Content Include="Assets\css-hamburgers\hamburgers.min.css" />
+    <Content Include="Assets\fonts\font-awesome-4.7.0\css\font-awesome.min.css" />
+    <Content Include="Assets\fonts\Linearicons-Free-v1.0.0\icon-font.min.css" />
+    <Content Include="Assets\select2\select2.min.css" />
+    <Content Include="Assets\select2\select2.min.js" />
     <Content Include="Content\animate\animate.css" />
     <Content Include="Content\animate\animate.min.css" />
     <Content Include="Content\bootstrap-grid.css" />
@@ -283,11 +305,35 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\login\main.css" />
+    <Content Include="Content\login\util.css" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Images\Carousel\carousel_doi_song.jpg" />
+    <Content Include="Images\Carousel\carousel_luong_ve.jpg" />
+    <Content Include="Images\Carousel\carousel_so_gi_day.jpg" />
+    <Content Include="Images\Carousel\carousel_tang_me.jpg" />
+    <Content Include="Images\Carousel\carousel_thiet_bi_dien_tu.jpg" />
+    <Content Include="Images\Carousel\danh_thuc_ve_dep.jpg" />
+    <Content Include="Images\Home\about.jpg" />
+    <Content Include="Images\Home\image_background_home_shopping_online.jpg" />
+    <Content Include="Images\icons\favicon.ico" />
+    <Content Include="Images\icons\icon-google.png" />
+    <Content Include="Images\ProductCategories\dong_ho.png" />
+    <Content Include="Images\ProductCategories\sac_dep.png" />
+    <Content Include="Images\ProductCategories\thiet_bi_dien_gia_dung.png" />
+    <Content Include="Images\ProductCategories\thiet_bi_dien_tu.png" />
+    <Content Include="Images\ProductCategories\thiet_bi_di_dong.png" />
+    <Content Include="Images\ProductCategories\thoi_trang_nam.png" />
+    <Content Include="Images\ProductCategories\thoi_trang_nu.png" />
+    <Content Include="Images\Products\5fe86c1dd23b61b0ae205b893ea656fb.jpg" />
+    <Content Include="Images\Products\a6ea80dff25f5b5175ff992c96e1b4e7.jpg" />
+    <Content Include="Images\Products\ao_thun_polo_nam.jpg" />
+    <Content Include="Images\Products\iphone-12-%2822%29.jpg" />
+    <Content Include="Images\Products\sg-11134201-22100-v0eli3sm69ivf5.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -474,6 +520,14 @@
     <Content Include="Areas\Admin\Assets\scss\argon-dashboard\_utilities.scss" />
     <Content Include="Areas\Admin\Assets\scss\argon-dashboard\_variables.scss" />
     <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductManager\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategoryManager\Index.cshtml" />
+    <Content Include="Assets\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Assets\fonts\poppins\Poppins-Regular.ttf" />
+    <Content Include="Assets\fonts\raleway\Raleway-Black.ttf" />
+    <Content Include="Assets\fonts\raleway\Raleway-Bold.ttf" />
+    <Content Include="Assets\fonts\raleway\Raleway-Regular.ttf" />
+    <Content Include="Assets\fonts\raleway\Raleway-SemiBold.ttf" />
     <None Include="Scripts\jquery-3.6.1.intellisense.js" />
     <Content Include="Scripts\counterup\counterup.min.js" />
     <Content Include="Scripts\easing\easing.js" />
@@ -487,6 +541,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\login\main.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\owlcarousel\assets\ajax-loader.gif" />
@@ -518,11 +573,22 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\owlcarousel\LICENSE" />
     <Content Include="Scripts\waypoints\links.php" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\ProductCategory\_ProductCategoryHome.cshtml" />
+    <Content Include="Views\Product\_GetAllPagingProduct.cshtml" />
+    <Content Include="Views\Product\ProductDetail.cshtml" />
+    <Content Include="Views\Cart\_CartHeader.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Order\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -559,6 +625,18 @@
     <ProjectReference Include="..\EconomicShop.Model\EconomicShop.Model.csproj">
       <Project>{A792C2EB-C80A-4CBD-AFDC-95F3EA341A04}</Project>
       <Name>EconomicShop.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EconomicShop.Service\EconomicShop.Service.csproj">
+      <Project>{290e634c-a411-4f68-aae8-9f4882bd83fd}</Project>
+      <Name>EconomicShop.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EconomicShop.Utilities\EconomicShop.Utilities.csproj">
+      <Project>{3C1C49A2-DD03-440B-B4B3-A969009547AE}</Project>
+      <Name>EconomicShop.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EconomicShop.ViewModel\EconomicShop.ViewModel.csproj">
+      <Project>{8136cc21-9d40-470e-a623-09e8e9ce3482}</Project>
+      <Name>EconomicShop.ViewModel</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -12,6 +12,9 @@ namespace EconomicShop.Model.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { set; get; }
 
+        [MaxLength(50)]
+        public string OrderId { set; get; }
+
         [Required]
         [MaxLength(256)]
         public string CustomerName { set; get; } = null!;
@@ -28,23 +31,25 @@ namespace EconomicShop.Model.Models
         [MaxLength(50)]
         public string CustomerMobile { set; get; } = null!;
 
-        [Required]
+       
         [MaxLength(256)]
-        public string CustomerMessage { set; get; } = null!;
+        public string? CustomerMessage { set; get; }
 
         [MaxLength(256)]
         public string PaymentMethod { set; get; } = null!;
 
+        public decimal Total { get; set; }
+
         public DateTime? CreatedDate { set; get; }
-        public string CreatedBy { set; get; } = null!;
+        public string? CreatedBy { set; get; }
         public string PaymentStatus { set; get; } = null!;
         public bool Status { set; get; }
 
         [StringLength(128)]
         [Column(TypeName = "nvarchar")]
-        public string CustomerId { set; get; } = null!;
+        public string UserId { set; get; } = null!;
 
-        [ForeignKey("CustomerId")]
-        public virtual IEnumerable<OrderDetail> OrderDetails { set; get; } = null!;
+        [ForeignKey("UserId")]
+        public virtual IEnumerable<ApplicationUser> ApplicationUsers { set; get; } = null!;
     }
 }

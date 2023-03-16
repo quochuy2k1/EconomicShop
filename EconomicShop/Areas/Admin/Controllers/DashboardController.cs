@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace EconomicShop.Areas.Admin.Controllers
 {
@@ -11,6 +7,7 @@ namespace EconomicShop.Areas.Admin.Controllers
         // GET: Admin/Dashboard
         public ActionResult Index()
         {
+            ViewBag.DashboardActive = "active";
             return View();
         }
     }

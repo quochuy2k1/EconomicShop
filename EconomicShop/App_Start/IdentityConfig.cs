@@ -1,18 +1,15 @@
-﻿using Microsoft.AspNet.Identity.Owin;
+﻿using EconomicShop.Data;
+using EconomicShop.Model.Models;
 using Microsoft.AspNet.Identity;
-using Microsoft.Owin.Security;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
+using Microsoft.Owin.Security;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Web;
-using Microsoft.AspNet.Identity.EntityFramework;
-using EconomicShop.Data;
-using EconomicShop.Model.Models;
 
-namespace QHuyShop.Web.App_Start
+namespace EconomicShop.App_Start
 {
     public class ApplicationUserStore : UserStore<ApplicationUser>
     {
@@ -21,6 +18,7 @@ namespace QHuyShop.Web.App_Start
         {
         }
     }
+
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
     public class ApplicationUserManager : UserManager<ApplicationUser>
     {
@@ -73,6 +71,7 @@ namespace QHuyShop.Web.App_Start
         {
         }
 
+       
         public override Task<ClaimsIdentity> CreateUserIdentityAsync(ApplicationUser user)
         {
             return user.GenerateUserIdentityAsync((ApplicationUserManager)UserManager, DefaultAuthenticationTypes.ApplicationCookie);

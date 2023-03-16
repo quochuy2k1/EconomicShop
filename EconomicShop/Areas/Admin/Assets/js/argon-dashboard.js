@@ -37,7 +37,6 @@ var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
   return new bootstrap.Tooltip(tooltipTriggerEl)
 })
 
-
 // when input is focused add focused class for style
 function focused(el) {
   if (el.parentElement.classList.contains('input-group')) {
@@ -115,7 +114,6 @@ if (document.querySelector('.fixed-plugin')) {
       buttonNavbarFixed.setAttribute("checked", "true");
     }
   }
-
 }
 
 //Set Sidebar Color
@@ -172,7 +170,6 @@ function sidebarType(a) {
   }
 
   sidebar.classList.add(color);
-
 
   // Remove text-white/text-dark classes
   if (color == 'bg-white') {
@@ -287,7 +284,6 @@ function toggleNavLinksColor(type) {
   }
 }
 
-
 // Navbar blur on scroll
 function navbarBlurOnScroll(id) {
   const navbar = document.getElementById(id);
@@ -344,7 +340,6 @@ function navbarBlurOnScroll(id) {
   }
 }
 
-
 // Debounce Function
 // Returns a function, that, as long as it continues to be invoked, will not
 // be triggered. The function will be called after it stops being called for
@@ -388,7 +383,6 @@ function toggleSidenav() {
       sidenav.classList.remove('bg-white');
     }, 100);
     sidenav.classList.remove('bg-transparent');
-
   } else {
     body.classList.add(className);
     sidenav.classList.add('bg-white');
@@ -443,7 +437,6 @@ function sidenavTypeOnResize() {
   }
 }
 
-
 // Tabs navigation
 
 var total = document.querySelectorAll('.nav-pills');
@@ -492,7 +485,6 @@ total.forEach(function(item, i) {
   }
 });
 
-
 // Tabs navigation resize
 
 window.addEventListener('resize', function(event) {
@@ -530,7 +522,6 @@ window.addEventListener('resize', function(event) {
         }
         moving_div.style.transform = 'translate3d(' + sum + 'px, 0px, 0px)';
         moving_div.style.width = item.querySelector('li:nth-child(' + index + ')').offsetWidth + 'px';
-
       }
     }
   });
@@ -549,7 +540,6 @@ window.addEventListener('resize', function(event) {
     })
   }
 });
-
 
 function getEventTarget(e) {
   e = e || window.event;
@@ -584,7 +574,6 @@ function darkMode(el) {
   const navLinks = document.querySelectorAll('.navbar-main .nav-link, .navbar-main .breadcrumb-item, .navbar-main .breadcrumb-item a, .navbar-main h6');
   const cardNavLinksIcons = document.querySelectorAll('.card .nav .nav-link i');
   const cardNavSpan = document.querySelectorAll('.card .nav .nav-link span');
-
 
   if (!el.getAttribute("checked")) {
     body.classList.add('dark-version');

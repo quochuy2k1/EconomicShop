@@ -1,0 +1,155 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section embeddedCss{
+
+    <link href="~/Scripts/owlcarousel/assets/owl.theme.green.min.css" rel="stylesheet" />
+    <link href="~/Scripts/owlcarousel/assets/owl.theme.default.min.css" rel="stylesheet" />
+}
+
+
+<div class="container-xxl py-5">
+    <div class="container">
+        @*<div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                <h1 class="display-6">Thông tin khác về Shop</h1>
+                <p class="text-primary fs-5 mb-5">Giúp bạn hiểu thêm về Shop</p>
+            </div>*@
+
+        <div class="row g-0 ">
+            <div class="col-8 pe-1" id="owl-container">
+                <div class="owl-carousel owl-theme">
+                    <div class="item" style="background-image: url(/Images/Carousel/carousel_tang_me.jpg); background-size: cover; background-repeat: no-repeat;">
+
+                    </div>
+                    <div class="item" style="background-image: url(/Images/Carousel/carousel_doi_song.jpg); background-size: cover; background-repeat: no-repeat;">
+
+                    </div>
+
+                    <div class="item" style="background-image: url(/Images/Carousel/carousel_tang_me.jpg); background-size: cover; background-repeat: no-repeat;">
+                    </div>
+                    <div class="item" style="background-image: url(/Images/Carousel/carousel_thiet_bi_dien_tu.jpg); background-size: cover; background-repeat: no-repeat;">
+                    </div>
+                    <div class="item" style="background-image: url(/Images/Carousel/danh_thuc_ve_dep.jpg); background-size: cover; background-repeat: no-repeat;">
+                    </div>
+
+                    <div class="owl-dots"></div>
+
+
+                </div>
+
+            </div>
+            <div class="col-4 px-1">
+                <div class="row g-0 full-home-banners position-relative">
+                    <div class="col-12 my-1" style="background-image: url(/Images/Carousel/carousel_so_gi_day.jpg); background-size: cover; background-repeat: no-repeat;">
+
+                    </div>
+                    <div class="col-12 my-1" style="background-image: url(/Images/Carousel/carousel_luong_ve.jpg); background-size: cover; background-repeat: no-repeat;">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card my-3">
+            <div class="card-header">
+                <h4 style="font-weight: 400 !important">Danh mục</h4>
+            </div>
+            <div class="card-body" style="min-height: 18rem">
+                <div class="d-flex w-100 h-100" id="category-container">
+                </div>
+            </div>
+
+            <div class="card my-3">
+                <div class="card-header">
+                    <h4 style="font-weight: 400 !important">Gợi ý hôm nay</h4>
+                </div>
+                <div class="card-body" style="min-height: 18rem">
+                    <div class="row w-100 h-100" id="product-container">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+@section scripts{
+
+
+        <script>
+        $(document).ready(function () {
+            $('.owl-carousel').owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: false,
+                items: 1,
+                dots: true,
+                dotsContainer: ".owl-dots",
+            @*responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items:
+                }
+            }*@
+            });
+
+            $.ajax({
+                type: "post",
+                url: "/ProductCategory/_ProductCategoryHome",
+                data: {},
+                cache: false,
+                success: function (data) {
+
+                    if (data) {
+                        $("#category-container").html(data)
+
+                    }
+
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr);
+                }
+            });
+
+            const GetPagingProduct = (request) => {
+                $("#product-container").html(`<div class="spinner-grow text-primary m-auto" role="status" style="position: absolute;top: 50%;left: 50%;">
+                                                  <span class="visually-hidden">Loading...</span>
+                                                </div>`)
+                $.ajax({
+                    type: "post",
+                    url: "/Product/_GetAllPagingProduct",
+                    data: {
+                        PageIndex: 1,
+                        PageSize: 8,
+                        ...request
+                    },
+                    cache: false,
+                    success: function (data) {
+
+                        if (data) {
+                            $("#product-container").html(data)
+
+                        }
+
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr);
+                    }
+                });
+            }
+
+            GetPagingProduct();
+            $(document).on("click", ".category-item", (e) => {
+                const CategoryId = $(e.currentTarget).attr("data-category")
+
+                GetPagingProduct({ CategoryId });
+            })
+        })
+        </script>
+}

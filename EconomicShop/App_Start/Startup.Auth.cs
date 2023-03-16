@@ -1,19 +1,17 @@
-﻿using Microsoft.AspNet.Identity.Owin;
+﻿using EconomicShop.Data;
+using EconomicShop.Model.Models;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 using System;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Identity.EntityFramework;
-using EconomicShop.Model.Models;
-using EconomicShop.Data;
 
-[assembly: OwinStartup(typeof(QHuyShop.Web.App_Start.Startup))]
+[assembly: OwinStartup(typeof(EconomicShop.App_Start.Startup))]
 
-namespace QHuyShop.Web.App_Start
+namespace EconomicShop.App_Start
 {
     public partial class Startup
     {
@@ -40,11 +38,11 @@ namespace QHuyShop.Web.App_Start
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-                LoginPath = new PathString("/dang-nhap.html"),
+                LoginPath = new PathString("/Account/Login"),
                 Provider = new CookieAuthenticationProvider
                 {
                     // Enables the application to validate the security stamp when the user logs in.
-                    // This is a security feature which is used when you change a password or add an external login to your account.  
+                    // This is a security feature which is used when you change a password or add an external login to your account.
                     OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
                         validateInterval: TimeSpan.FromHours(3),
                         regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager, DefaultAuthenticationTypes.ApplicationCookie))
@@ -71,6 +69,7 @@ namespace QHuyShop.Web.App_Start
             //    ClientSecret = "T0cgiSG6Gi7BKMr-fCCkdErO"
             //});
         }
+
         //public class AuthorizationServerProvider : OAuthAuthorizationServerProvider
         //{
         //    public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)

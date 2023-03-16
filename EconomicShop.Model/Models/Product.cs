@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Xml.Linq;
 
 namespace EconomicShop.Model.Models
 {
@@ -23,7 +22,7 @@ namespace EconomicShop.Model.Models
         public string Image { get; set; } = null!;
 
         [Column(TypeName = "xml")]
-        public string MoreImages { get; set; } = null!;
+        public string? MoreImages { get; set; }
 
         public decimal Price { get; set; }
         public decimal OriginalPrice { get; set; }
@@ -31,7 +30,7 @@ namespace EconomicShop.Model.Models
         public int? Warranty { get; set; }
 
         [Required]
-        [MaxLength(512)]
+        [Column(TypeName = "nvarchar(max)")]
         public string Description { get; set; } = null!;
 
         public string Content { get; set; } = null!;
@@ -45,6 +44,8 @@ namespace EconomicShop.Model.Models
 
         [ForeignKey("CategoryId")]
         public virtual ProductCategory Caterory { get; set; } = null!;
+
         public virtual IEnumerable<ProductTag> ProductTags { set; get; }
+        public virtual IEnumerable<Cart> Carts { set; get; }
     }
 }

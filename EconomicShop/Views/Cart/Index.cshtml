@@ -1,0 +1,568 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using EconomicShop.ViewModel.Common.CartVM
+
+@model List<CartViewModel>
+
+@section embeddedCss{
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.2.0/dist/select2-bootstrap-5-theme.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+}
+@section embeddedScript{
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+}
+
+@section css {
+    <style>
+        .form-holder {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+            .form-holder .form-content {
+                position: relative;
+                text-align: center;
+                display: -webkit-box;
+                display: -moz-box;
+                display: -ms-flexbox;
+                display: -webkit-flex;
+                display: flex;
+                -webkit-justify-content: center;
+                justify-content: center;
+                -webkit-align-items: center;
+                align-items: center;
+                padding: 1rem;
+            }
+
+        .form-content .form-items {
+            border: 3px solid #fff;
+            padding: 2rem;
+            display: inline-block;
+            width: 100%;
+            min-width: 540px;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            text-align: left;
+            -webkit-transition: all 0.4s ease;
+            transition: all 0.4s ease;
+        }
+
+        .form-content h3 {
+            color: #fff;
+            text-align: left;
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+            .form-content h3.form-title {
+                margin-bottom: 30px;
+            }
+
+        .form-content p {
+            color: #fff;
+            text-align: left;
+            font-size: 17px;
+            font-weight: 300;
+            line-height: 20px;
+            margin-bottom: 30px;
+        }
+
+
+        .form-content label, .was-validated .form-check-input:invalid ~ .form-check-label, .was-validated .form-check-input:valid ~ .form-check-label {
+            color: #fff;
+        }
+
+        .form-content input[type=text], .form-content input[type=password], .form-content input[type=email], .form-content select {
+            width: 100%;
+            padding: 9px 20px;
+            text-align: left;
+            border: 0;
+            outline: 0;
+            border-radius: 6px;
+            background-color: #fff;
+            font-size: 15px;
+            font-weight: 300;
+            color: #8D8D8D;
+            -webkit-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+            margin-top: 16px;
+        }
+
+
+        .btn-primary {
+            background-color: #6C757D;
+            outline: none;
+            border: 0px;
+            box-shadow: none;
+        }
+
+            .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+                background-color: #495056;
+                outline: none !important;
+                border: none !important;
+                box-shadow: none;
+            }
+
+        .form-content textarea {
+            position: static !important;
+            width: 100%;
+            padding: 8px 20px;
+            border-radius: 6px;
+            text-align: left;
+            background-color: #fff;
+            border: 0;
+            font-size: 15px;
+            font-weight: 300;
+            color: #8D8D8D;
+            outline: none;
+            resize: none;
+            height: 120px;
+            -webkit-transition: none;
+            transition: none;
+            margin-bottom: 14px;
+        }
+
+            .form-content textarea:hover, .form-content textarea:focus {
+                border: 0;
+                background-color: #ebeff8;
+                color: #8D8D8D;
+            }
+
+        .mv-up {
+            margin-top: -9px !important;
+            margin-bottom: 8px !important;
+        }
+
+        .invalid-feedback {
+            color: #ff606e;
+        }
+
+        .valid-feedback {
+            color: #2acc80;
+        }
+    </style>
+
+}
+
+<div class="px-4 px-lg-0">
+    <!-- For demo purpose -->
+    <div class="container text-dark pt-3 pb-2 text-center">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+
+                    <span class="badge badge-light-success">
+
+                        <span class="material-symbols-rounded " style="font-size: 36px; color: #0ea5e9">
+                            shopping_cart
+
+                        </span>
+                    </span>
+                    <h4 class="px-2 m-0" style="color: #0ea5e9; font-weight: 400 !important"> Giỏ hàng</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End -->
+
+    <div class="pb-5">
+        <div class="container">
+
+            <div class="row g-0 py-2">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="col-lg-12  bg-white rounded shadow-sm mb-5">
+
+                            <!-- Shopping cart table -->
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="border-0 bg-light">
+                                                <input class="form-check-input" type="checkbox" value="" id="checkAll">
+                                            </th>
+                                            <th scope="col" class="border-0 bg-light">
+                                                <div class="p-2 px-3 text-uppercase">Sản phẩm</div>
+                                            </th>
+                                            <th scope="col" class="border-0 bg-light">
+                                                <div class="py-2 text-uppercase">Giá</div>
+                                            </th>
+                                            <th scope="col" class="border-0 bg-light">
+                                                <div class="py-2 text-uppercase">Số lượng</div>
+                                            </th>
+                                            <th scope="col" class="border-0 bg-light">
+                                                <div class="py-2 text-uppercase">Xoá</div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{
+                                            foreach (var cart in Model)
+                                            {
+                                                <tr>
+                                                    <td class="border-0 align-middle">
+                                                        <input class="form-check-input cartCheck" type="checkbox" value="" id="flexCheckDefault" data-product-cart='@(new HtmlString(Json.Encode(cart)))'>
+                                                    </td>
+                                                    <th scope="row" class="border-0">
+                                                        <div class="p-2">
+                                                            <img src="~/Images//Products/@cart.ProductImage" alt="" width="70" class="img-fluid rounded shadow-sm" style="object-fit: contain">
+                                                            <div class="ms-3 d-inline-block align-middle">
+                                                                <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">@cart.ProductName</a></h5><span class="text-muted font-weight-normal font-italic d-block">Danh mục: @cart.CategoryName</span>
+                                                            </div>
+                                                        </div>
+                                                    </th>
+                                                    <td class="border-0 align-middle"><strong>@Html.FormatValue(@cart.Price, "{0:#,###}")đ</strong></td>
+                                                    <td class="border-0 align-middle">
+                                                        <form action="@Url.Action("UpdateQuantity", "Cart", new { Id = cart.Id})" method="post">
+                                                            <div class="input-group" style="width: 35%">
+                                                                <button class="btn btn-outline-secondary" type="submit" id="increment" style=" border-top-left-radius: 3px !important; border-bottom-left-radius: 3px !important;" onclick="OnIncrement(event)">+</button>
+                                                                <input type="text" id="" class="form-control text-center quantity-order" placeholder="" name="quantity" value="@cart.Quantity" aria-label="Nhập số lượng đặt hàng" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                                                <button class="btn btn-outline-secondary" type="submit" id="decrement" style=" border-top-right-radius: 3px !important; border-bottom-right-radius: 3px !important;" onclick="OnDecrement(event)">-</button>
+
+                                                            </div>
+                                                        </form>
+                                                    </td>
+                                                    <td class="border-0 align-middle">
+                                                        <span class="badge badge-light-danger">
+                                                            <span href="#" class="text-danger delete-cart" id="" data-cart="@cart.Id">
+
+                                                                <span class="material-symbols-rounded ">
+                                                                    delete
+
+                                                                </span>
+                                                            </span>
+
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- End -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Thông tin cá nhân
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <div class="card py-2" style=" background-color: #152733;">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="form-holder">
+                                            <div class="form-content">
+                                                <div class="form-items">
+                                                    <form class="requires-validation" id="user-info" novalidate>
+
+                                                        <div class="col-md-12">
+                                                            <input class="form-control" type="text" name="CustomerName" placeholder="Nhập họ và tên" required value="@Session["FullName"]">
+                                                            <div class="valid-feedback">Họ và tên không phù hợp!</div>
+                                                            <div class="invalid-feedback">Họ và tên không thể trống!</div>
+                                                        </div>
+
+                                                        <div class="col-md-12">
+                                                            <input class="form-control" type="email" name="CustomerEmail" placeholder="Nhập địa chỉ email" required value="@Session["Email"]">
+                                                            <div class="valid-feedback">Email không phù hợp!</div>
+                                                            <div class="invalid-feedback">Email không thể trống!</div>
+                                                        </div>
+
+
+
+                                                        <div class="col-md-12">
+                                                            <input class="form-control mt-3" type="tel" name="CustomerMobile" placeholder="Nhập số điện thoại" required>
+                                                            <div class="valid-feedback">Số điện thoại không phù hợp!</div>
+                                                            <div class="invalid-feedback">Số điện thoại không được trống!</div>
+                                                        </div>
+
+                                                        <div class="col-md-12">
+                                                            <input class="form-control" type="text" name="CustomerAddress" placeholder="Nhập địa chỉ" required>
+                                                            <div class="valid-feedback">Địa chỉ không phù hợp!</div>
+                                                            <div class="invalid-feedback">Địa chỉ không được trống!</div>
+                                                        </div>
+
+
+                                                        <div class="form-check mt-3">
+                                                            <input class="form-check-input" checked type="checkbox" value="" id="invalidCheck" required>
+                                                            <label class="form-check-label">Chấp nhận điều khoản và dịch vụ!</label>
+                                                            <div class="invalid-feedback">Please confirm that the entered data are all correct!</div>
+                                                        </div>
+
+
+                                                        <div class="form-button mt-3">
+                                                            <button id="submit" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" class="btn btn-primary">Lưu lại</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card py-2">
+                <div class="card-body">
+                    <form class="row py-5 bg-white rounded shadow-sm g-0" id="order-form">
+                        <div class="col-lg-6">
+
+                            <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Mã giảm giá</div>
+                            <div class="p-4">
+                                <p class="font-italic mb-4">Nếu bạn có mã giảm giá, vui lòng nhập vào ô bên dưới</p>
+                                <div class="input-group mb-4 border rounded-pill p-2">
+                                    <input type="text" placeholder="Áp dụng mã giảm giá" aria-describedby="button-addon3" class="form-control border-0" name="coupon">
+                                    <div class="input-group-append border-0">
+                                        <button id="button-addon3" type="button" class="btn btn-primary px-4 rounded-pill"><i class="fa fa-gift me-2"></i>Áp dụng</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Phương thức thanh toán</div>
+                            <div class="p-4">
+                                <p class="font-italic mb-4">Hãy chọn phương thức vận chuyển</p>
+                                <div class="input-group mb-4 p-2">
+                                    <select class="js-data-payment-method-ajax form-select" aria-label="Default select example" id="payment-method" name="PaymentMethod">
+                                        <option selected>Chọn phương thức thanh toán</option>
+                                        <option value="Thanh toán khi nhận hàng">Thanh toán khi nhận hàng</option>
+                                        <option value="Thanh toán ví Momo">Thanh toán ví Momo</option>
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Lưu ý cho người bán</div>
+                            <div class="p-4">
+                                <p class="font-italic mb-4">Nếu bạn có một số thông tin cho người bán, bạn có thể nhập chúng bên dưới</p>
+                                <textarea name="CustomerMessage" cols="30" rows="2" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Chi tiết đặt hàng </div>
+                            <div class="p-4">
+                                <p class="font-italic mb-4">Chi phí vận chuyển và chi phí bổ sung được tính toán dựa trên các giá trị bạn đã nhập.</p>
+                                <ul class="list-unstyled mb-4">
+                                    <li class="d-flex justify-content-between py-3 border-bottom">
+                                        <strong class="text-muted">Tổng sản phẩm </strong>
+                                        <strong id="product-total">0 VND</strong>
+                                    </li>
+                                    <li class="d-flex justify-content-between py-3 border-bottom">
+                                        <strong class="text-muted">Phí vận chuyển</strong>
+                                        <strong id="ship-cost">25.000 VND</strong>
+                                    </li>
+                                    <li class="d-flex justify-content-between py-3 border-bottom">
+                                        <strong class="text-muted">Phí giảm giá</strong>
+                                        <strong id="coupon-cost">0 VND</strong>
+                                    </li>
+                                    <li class="d-flex justify-content-between py-3 border-bottom">
+                                        <strong class="text-muted">Tổng</strong>
+                                        <h5 class="font-weight-bold" id="total">0</h5>
+                                    </li>
+                                </ul><button class="btn btn-primary rounded-pill py-2 btn-block" id="order" type="button">Đặt hàng và thanh toán</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        function OnIncrement(event) {
+            $(event.target).siblings('.quantity-order').get(0).value++;
+
+        }
+
+        function OnDecrement(event) {
+
+            if ($(event.target).siblings('.quantity-order').get(0).value > 0) {
+                $(event.target).siblings('.quantity-order').get(0).value--;
+            }
+        }
+        $(document).ready(function () {
+
+            $('.js-data-payment-method-ajax').select2({
+                theme: 'bootstrap-5',
+                language: "vi",
+
+            });
+
+            $(document).on("change", "#checkAll", (e) => {
+                if (e.currentTarget.checked) {
+
+                    $(".cartCheck").each((idx, elm) => {
+                        if (!$(elm).is(":checked")) {
+                            $(elm).prop("checked", true).change();
+                        }
+
+                    });
+                }
+                else {
+                    $(".cartCheck").each((idx, elm) => {
+                        if ($(elm).is(":checked")) {
+                            $(elm).prop("checked", false).change();
+                        }
+
+                    });
+
+
+                }
+            });
+
+            $(document).on("click", ".delete-cart", (e) => {
+                const Id = $(e.currentTarget).attr("data-cart");
+                console.log(Id, "Id cart")
+                $.ajax({
+                    type: "post",
+                    url: "/Cart/DeleteCart",
+                    cache: false,
+                    data: {
+                        Id
+                    },
+                    success: function (data) {
+
+                        if (data.status === "success") {
+
+                            //
+                            Toastify({
+                                text: data.result,
+                                duration: 5000,
+                                close: true,
+                                gravity: "top", // `top` or `bottom`
+                                position: "right", // `left`, `center` or `right`
+                                stopOnFocus: true, // Prevents dismissing of toast on hover
+                                style: {
+                                    background: "linear-gradient(to right, #56C596, #7BE495)",
+                                },
+                                onClick: function () { } // Callback after click
+                            }).showToast();
+
+                            window.location.reload();
+                        }
+
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr);
+                    }
+                });
+            });
+
+            /**/
+            var total = 25000 + 0;
+            $("#total").text(total.toLocaleString('it-IT', { style: 'currency', currency: 'VND' }));
+            var product_total = 0;
+            $(document).on("change", ".cartCheck", (e) => {
+                const json_cart = $(e.currentTarget).attr("data-product-cart");
+                const cart = JSON.parse(json_cart);
+                if (e.currentTarget.checked) {
+
+                    product_total += (cart.Quantity * cart.Price);
+                    total += (cart.Quantity * cart.Price);
+                }
+                else {
+                    product_total -= (cart.Quantity * cart.Price);
+                    total -= (cart.Quantity * cart.Price);
+                }
+
+
+                $("#product-total").text(product_total.toLocaleString('it-IT', { style: 'currency', currency: 'VND' }));
+                $("#total").text(total.toLocaleString('it-IT', { style: 'currency', currency: 'VND' }));
+
+            });
+
+            $("#order").on("click", (e) => {
+                console.log(e.target, "click")
+                const form_data_user_info = new FormData($("#user-info").get(0));
+                var UserInfo = Object.fromEntries(form_data_user_info);
+
+                const form_data_order = new FormData($("#order-form").get(0));
+                form_data_order.append("Total", total)
+                var Order = Object.fromEntries(form_data_order);
+
+                var OrderDetail = [];
+                $(".cartCheck").each((idx, checkbox) => {
+                    if ($(checkbox).is(":checked")) {
+                        
+                        const { ProductName, ProductImage, DateCreated, CategoryName, ...OrderProductDetail } = JSON.parse($(checkbox).attr("data-product-cart"));
+                        OrderDetail.push(OrderProductDetail);
+                    }
+                });
+
+                const extraData = {
+                    Order: {
+                        ...UserInfo,
+                        ...Order
+                    },
+                    OrderDetail
+                } 
+
+                $.ajax({
+                    type: "post",
+                    url: "/Order/MomoPayment",
+                    data: {
+                        OrderInfo: "Thanh toán đơn hàng mua ở Berry Shop",
+                        Amount: total,
+                        ExtraData: extraData
+                    },
+                    dataType: "json",
+                    cache: false,
+                    success: function (data) {
+
+                        if (data.status === "success") {
+
+                            //
+                            Toastify({
+                                text: data.result.message,
+                                duration: 5000,
+                                close: true,
+                                gravity: "top", // `top` or `bottom`
+                                position: "right", // `left`, `center` or `right`
+                                stopOnFocus: true, // Prevents dismissing of toast on hover
+                                style: {
+                                    background: "linear-gradient(to right, #56C596, #7BE495)",
+                                },
+                                onClick: function () { } // Callback after click
+                            }).showToast();
+
+                            window.open(data.result.order_url, '_blank');
+                        }
+                       
+                        console.log(data)
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr);
+                    }
+                });
+                console.log(extraData)
+
+            })
+        })
+    </script>
+
+}
