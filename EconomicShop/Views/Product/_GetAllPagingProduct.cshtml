@@ -1,0 +1,40 @@
+﻿@using EconomicShop.ViewModel.Common.Product;
+@using EconomicShop.ViewModel.Paging;
+
+@model PagedResult<ProductViewModel>
+
+
+
+@{
+    var products = Model.Items;
+    var total = Model.TotalRecord;
+
+    foreach (var product in products)
+    {
+        <div class="col-md-2 pt-3">
+            <div class="card" style="width: 12rem;" id="product-item" onclick="document.location.href = '@Url.Action("ProductDetail", "Product", new { @Id = product.Id })'">
+                <img src="~/Images/Products/@product.Image" alt="Alternate Text" />
+
+                <div class="card-body px-2 pb-5">
+                    <span class="card-title limit-text-2 " style="min-height: 1.75rem; font-weight:400; display: inline; line-height: 14px; font-size: .75rem;">@product.Name | @product.Content</span>
+                    @*<p class="card-text limit-text-3 text-muted">
+                        @if (sach.MoTa.Length > 200)
+                        {
+                            @sach.MoTa.Substring(0, 200)
+                        }
+                        else
+                        {
+                            @sach.MoTa
+                        }
+                    </p>*@
+                    <p class="card-text">
+                        <strong>Giá bán:</strong> <span class="text-danger fw-bold">@Html.FormatValue(product.Price, "{0:#,###}")  đ</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </div>
+    }
+}
+
+

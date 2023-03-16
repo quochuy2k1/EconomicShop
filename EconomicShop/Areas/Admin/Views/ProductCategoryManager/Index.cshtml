@@ -1,0 +1,510 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section css{
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.2.0/dist/select2-bootstrap-5-theme.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.5.0/css/select.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css" />
+}
+
+@section DataTableScript{
+
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/select/1.5.0/js/dataTables.select.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.3.0/js/responsive.bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.colVis.min.js"></script>
+}
+
+@section TinyEditor{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.1.0/tinymce.min.js" integrity="sha512-dr3qAVHfaeyZQPiuN6yce1YuH7YGjtUXRFpYK8OfQgky36SUfTfN3+SFGoq5hv4hRXoXxAspdHw4ITsSG+Ud/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+}
+
+@section CDNScript{
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+}
+<div>
+    <div class="card">
+        <div class="card-body">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProductCategory">Thêm danh mục</button>
+            <button type="button" class="btn btn-warning">Xoá danh mục</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="container">
+                <br />
+                <div style="width:100%; margin:0 auto;">
+                    <table id="productCategoryTable" class="table table-striped table-bordered dt-responsive nowrap manager-table" width="100%" cellspacing="0">
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addProductCategory" tabindex="-1" aria-labelledby="ThemSanPham" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="ThemSanPham">Thêm danh mục sản phẩm</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addProductCategoryForm" enctype="multipart/form-data">
+                        <div class="mb-2">
+                            <label for="Name" class="form-label">Tên danh mục sản phẩm</label>
+                            <input type="text" class="form-control" id="Name" name="Name" placeholder="Thời trang nam">
+                        </div>
+
+                        <div class="mb-2">
+                            <label for="CategotyId" class="form-label">Chọn danh mục cha</label>
+                            <select class="js-data-category-ajax form-select" aria-label="Default select example" id="CategotyId" name="CategotyId">
+                                <option selected>Chọn danh mục cha</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="Image" class="form-label">Chọn hình danh mục</label>
+                            <input class="form-control" type="file" id="Image" name="Image">
+                        </div>
+
+                        <div class="mb-2">
+                            <textarea id="Description" name="Description">Nhập mô tả danh mục sản phẩm</textarea>
+                        </div>
+
+                        <div class="mb-2">
+                            <label for="DisplayOrder" class="form-label">Thứ tự hiển thị</label>
+                            <input type="number" class="form-control" id="DisplayOrder" name="DisplayOrder" placeholder="1">
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <div class="mb-2">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="HomeFlag" name="HomeFlag" value="true">
+                                    <label class="form-check-label" for="HomeFlag">Hiển thị trang chủ</label>
+                                </div>
+                            </div>
+
+                            <div class="mb-2">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="Status" name="Status" value="true">
+                                    <label class="form-check-label" for="Status">Vô hiệu sản phẩm</label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" form="addProductCategoryForm" class="btn btn-primary">Lưu thay đổi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*update*@
+
+    <div class="modal fade" id="updateProductCategory" tabindex="-1" aria-labelledby="CapNhatSanPham" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="CapNhatSanPham">Cập nhật danh mục sản phẩm</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="updateProductCategoryForm" enctype="multipart/form-data">
+                        <input type="hidden" class="form-control" id="Id" name="Id" >
+                        <div class="mb-2">
+                            <label for="Name" class="form-label">Tên danh mục sản phẩm</label>
+                            <input type="text" class="form-control" id="Name" name="Name" placeholder="Thời trang nam">
+                        </div>
+
+                        <div class="mb-2">
+                            <label for="CategotyId" class="form-label">Chọn danh mục cha</label>
+                            <select class="js-data-category-update-ajax form-select" aria-label="Default select example" id="CategotyId" name="CategotyId">
+                                <option selected>Chọn danh mục cha</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="Image" class="form-label">Chọn hình danh mục</label>
+                            <input class="form-control" type="file" id="Image" name="Image">
+                        </div>
+
+                        <div class="mb-2">
+                            <textarea id="Description" name="Description">Nhập mô tả danh mục sản phẩm</textarea>
+                        </div>
+
+                        <div class="mb-2">
+                            <label for="DisplayOrder" class="form-label">Thứ tự hiển thị</label>
+                            <input type="number" class="form-control" id="DisplayOrder" name="DisplayOrder" placeholder="1">
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <div class="mb-2">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="HomeFlag" name="HomeFlag" value="true">
+                                    <label class="form-check-label" for="HomeFlag">Hiển thị trang chủ</label>
+                                </div>
+                            </div>
+
+                            <div class="mb-2">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="Status" name="Status" value="true">
+                                    <label class="form-check-label" for="Status">Kích hoạt danh mục</label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" form="updateProductCategoryForm" class="btn btn-primary">Lưu thay đổi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#addProductCategory .modal-body .js-data-category-ajax').select2({
+                theme: 'bootstrap-5',
+                dropdownParent: $('#addProductCategory'),
+                language: "vi",
+                ajax: {
+                    url: "/Admin/ProductCategoryManager/get-all-by-select2",
+                    type: "get",
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            q: params.term// search term
+                        }
+
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: data.results
+                        };
+                    },
+                    minimumInputLength: 2,
+                    width: 'resolve'
+                    // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
+                }
+            });
+
+            tinymce.init({
+                selector: '#Description',
+                browser_spellcheck: true,
+                contextmenu: false
+            });
+
+            // Prevent Bootstrap dialog from blocking focusin
+            document.addEventListener('focusin', (e) => {
+                if (e.target.closest(".tox-tinymce-aux, .moxman-window, .tam-assetmanager-root") !== null) {
+                    e.stopImmediatePropagation();
+                }
+            });
+
+            var productCategoryTable = $('#productCategoryTable').DataTable({
+                "processing": true, // for show progress bar
+                "serverSide": true, // for process server side
+                "filter": true, // this is for disable filter (search box)
+                "orderMulti": false, // for disable multiple column at once
+                "pageLength": 5,
+
+                "ajax": {
+                    "url": "/Admin/ProductCategoryManager/load-product-category",
+                    "type": "POST",
+                    "datatype": "json"
+                },
+
+                "columnDefs":
+                    [{
+                        orderable: false,
+                        data: null,
+                        defaultContent: '',
+                        className: 'select-checkbox',
+                        targets: [0]
+                    },
+                    {
+                        "targets": [1],
+                        "visible": false,
+                        "searchable": false
+                    },
+                    {
+                        "targets": [2],
+                        "searchable": false,
+                        "orderable": false
+                    },
+                    {
+                        "targets": [3],
+                        "searchable": false,
+                        "orderable": false
+                    },
+                    {
+                        "targets": [4],
+                        "searchable": false,
+                        "orderable": false
+                    }],
+
+                "columns": [
+                    {
+                        orderable: false,
+                        data: null,
+                        defaultContent: '',
+                        className: 'select-checkbox',
+
+                    },
+                    { "data": "Id", "name": "Id", "title": "Id", "autoWidth": true },
+                    { "data": "Name", "name": "Name", "title": "Tên Danh mục", "autoWidth": true },
+                    {
+                        data: null,
+                        render: function (data, type, row) {
+                            console.log(data, type, row)
+                            if (type === "display") {
+                                return `<div class="round-img">
+                                            <a href="#"><img class="rounded" src="${row.Image ? "/Images/ProductCategories/" + row.Image : "https://www.bootdey.com/img/Content/avatar/avatar5.png"}" alt=""></a>
+                                        </div>`
+                            }
+                            return data
+
+                        }, "title": "Hình ảnh", "name": "Hình ảnh", "autoWidth": true
+                    },
+                    { "data": "ParentId", "name": "ParentId", "title": "Danh mục cha", "autoWidth": true },
+                    { "data": "DisplayOrder", "name": "DisplayOrder", "title": "Thứ tự hiển thị", "autoWidth": true },
+                    {
+                        "data": "HomeFlag", "name": "HomeFlag", "title": "Hiển thị trang chủ", "autoWidth": true,
+                        render: function (data, type, row) {
+                            console.log(data, type, row)
+                            if (type === "display") {
+                                return row.Status ? "Hiển thị" : "Không hiển thị"
+                            }
+                            return data
+
+                        }
+                    },
+                    {
+                        data: null,
+                        title: "Sửa",
+                        render: function (data, type, full, meta) { return `<a class='btn btn-info' href='#' onClick='UpdateProductCategory(${JSON.stringify(full)});'' >Sửa</a>`; }
+                    },
+                    {
+
+                        data: null,
+                        title: "Xoá",
+                        render: function (data, type, row) {
+                            return `<a href='#' class='btn btn-danger' onClick="DeleteData(${row.Id});" >Xoá</a>`;
+                        }
+                    },
+
+                ],
+                select: {
+                    style: 'multi',
+                    selector: 'td:first-child'
+                },
+                order: [[1, 'asc']],
+
+                dom: 'Bfrtip',
+                buttons: ['pageLength', 'edit', {
+                    extend: "selectAll",
+                    text: "Chọn hết"
+                },
+                    {
+                        extend: "selectNone",
+                        text: "Bỏ chọn"
+                    }
+                    , {
+                        extend: 'print',
+                        download: 'open',
+                        exportOptions: {
+                            columns: ':visible'
+                        },
+                        customize: function (win) {
+                            console.log($(win.document.body).find('table').eq(1))
+                            // $(win.document.body)
+                            //     .css('font-size', '10pt')
+                            //     .prepend(
+                            //         '<img src="http://datatables.net/media/images/logo-fade.png" style="position:absolute; top:0; left:0;" />'
+                            //     );
+
+                            $(win.document.body).find('table')
+                                .addClass('table-bordered').removeClass("table-type-1")
+                        },
+                        messageTop: `<span class="h5 pt-3 d-block">THÔNG TIN GIA SƯ</span>`
+                    },
+                    'colvis',
+                ],
+                stateSave: true,
+                responsive: true,
+                aoColumnDefs: [{
+                    bSortable: false,
+                    aTargets: [0]
+                }],
+                orderCellsTop: true,
+                fixedHeader: true,
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/1.12.1/i18n/vi.json",
+                    paginate: {
+                        next: '»',
+                        previous: '«'
+                    }
+                }
+
+            });
+
+@**@        // Thêm danh mục
+            $('#addProductCategoryForm').on('submit', (event) => {
+
+                event.preventDefault();
+                console.log(new FormData($(event.target)[0]), "form data")
+                $.ajax({
+                    type: "post",
+                    url: "/Admin/ProductCategoryManager/add-new",
+                    data: new FormData($(event.target)[0]),
+                    processData: false,
+                    contentType: false,
+                    dataType: "json",
+                    cache: false,
+                    success: function (data) {
+
+                        if (data.status === "success") {
+
+                            //
+                            Toastify({
+                                text: data.result,
+                                duration: 5000,
+                                close: true,
+                                gravity: "top", // `top` or `bottom`
+                                position: "right", // `left`, `center` or `right`
+                                stopOnFocus: true, // Prevents dismissing of toast on hover
+                                style: {
+                                    background: "linear-gradient(to right, #56C596, #7BE495)",
+                                },
+                                onClick: function () { } // Callback after click
+                            }).showToast();
+                        }
+
+                        $(event.target)[0].reset();
+                        $("#Name").focus();
+
+                        productCategoryTable.ajax.reload(null, false);
+                        console.log(data)
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr);
+                    }
+                });
+            });
+
+
+           // Cập nhật danh mục
+
+            $('#updateProductCategoryForm').on('submit', (event) => {
+
+                event.preventDefault();
+                console.log(new FormData($(event.target)[0]), "form data")
+                $.ajax({
+                    type: "post",
+                    url: "/Admin/ProductCategoryManager/update",
+                    data: new FormData($(event.target)[0]),
+                    processData: false,
+                    contentType: false,
+                    dataType: "json",
+                    cache: false,
+                    success: function (data) {
+
+                        if (data.status === "success") {
+                            //
+                            Toastify({
+                                text: data.result,
+                                duration: 5000,
+                                close: true,
+                                gravity: "top", // `top` or `bottom`
+                                position: "right", // `left`, `center` or `right`
+                                stopOnFocus: true, // Prevents dismissing of toast on hover
+                                style: {
+                                    background: "linear-gradient(to right, #56C596, #7BE495)",
+                                },
+                                onClick: function () { } // Callback after click
+                            }).showToast();
+                        }
+
+                        $(event.target)[0].reset();
+                        $("#Name").focus();
+
+                        productCategoryTable.ajax.reload(null, false);
+                        console.log(data)
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr);
+                    }
+                });
+            });
+           
+
+        });
+
+       
+            const UpdateProductCategory = (data) => {
+                console.log(data)
+                var updateModel = new bootstrap.Modal(document.getElementById('updateProductCategory'), {
+                    keyboard: false
+                });
+                updateModel.show();
+
+                $('.js-data-category-update-ajax').select2({
+                    theme: 'bootstrap-5',
+                    dropdownParent: $('#updateProductCategory'),
+                    language: "vi",
+                    ajax: {
+                        url: "/Admin/ProductCategoryManager/get-all-by-select2",
+                        type: "get",
+                        dataType: 'json',
+                        delay: 250,
+                        data: function (params) {
+                            return {
+                                q: params.term// search term
+                            }
+
+                        },
+                        processResults: function (data) {
+                            return {
+                                results: data.results
+                            };
+                        },
+                        minimumInputLength: 2,
+                        width: 'resolve'
+                        // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
+                    }
+                });
+
+                $("#updateProductCategory .modal-body #Name").val(data.Name)
+                $("#updateProductCategory .modal-body #Id").val(data.Id)
+                if (data.CategotyId) $('#updateProductCategory .modal-body #CategotyId').val(data.CategotyId).trigger('change')
+                @*$("#updateProductCategory .modal-body #CategotyId").val(data.CategotyId)*@
+                @*$("#updateProductCategory .modal-body #Image").val(data.Image)*@
+                tinymce.activeEditor.setContent(data.Description)
+                $("#updateProductCategory .modal-body #DisplayOrder").val(data.DisplayOrder)
+                $("#updateProductCategory .modal-body #HomeFlag").prop("checked", data.HomeFlag)
+                $("#updateProductCategory .modal-body #Status").prop("checked", data.Status)
+            }
+        
+    </script>
+
+}

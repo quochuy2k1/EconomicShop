@@ -1,31 +1,458 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+@section intro{
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    <!-- Navbar End -->
+    <!-- Header Start -->
+    <div class="container-fluid hero-header bg-light py-5 mb-5">
+        <div class="container py-5">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6 text-white">
+                    <h1 class="display-4 mb-3 animated slideInDown">Berry Shop Nơi Bạn Sẽ Mất Nữa Tháng Lương</h1>
+                    <p class="animated slideInDown">
+                        Hãy cùng Berry Shop khám phá những sản phẩm theo trend mới nhất. Berry Shop luôn cập
+                        nhật các mẫu sản phẩm mới nhất và theo các trend trên mọi nền tảng mạng xã hội.
+                    </p>
+                    <a href="@Url.Action("Index", "Product")" class="btn btn-primary py-3 px-4 animated slideInDown">Bắt đầu mua</a>
+                </div>
+                <div class="col-lg-6 animated fadeIn">
+                    <img class="img-fluid animated pulse infinite" style="animation-duration: 3s;" src="img/hero-1.png"
+                         alt="">
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    <!-- Header End -->
+    <!-- About Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+
+                    <img class="img-fluid" src="~/Images/Home/about.jpg" alt="" />
+                </div>
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="h-100">
+                        <h1 class="display-6">Thông tin chung</h1>
+                        <p class="text-primary fs-5 mb-4">Trụ sở chính tại Đồng Tháp</p>
+                        <p>
+                            Shop thành lập được 10 năm từ quy mô nhỏ và bây giờ shop đã có mặt có nhiều tỉnh thành.
+                            Với mong muốn được phục vụ cho tất cả khách hàng gần xa
+                        </p>
+                        <p class="mb-4">
+                            Các sản phẩm của shop đa dạng về mẫu mã đến chất lượng. Shop luôn tập trung về chất lượng và
+                            hàng shop nhập về đảm bảo hàng chính hãng 100%. Có 3 yếu tố tạo nên sự thành công của Berry Shop.
+                        </p>
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="fa fa-check bg-light text-primary btn-sm-square rounded-circle me-3 fw-bold"></i>
+                            <span>Phục vụ nhiệt tình, tận tâm</span>
+                        </div>
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="fa fa-check bg-light text-primary btn-sm-square rounded-circle me-3 fw-bold"></i>
+                            <span>Chất lượng là yếu tố hàng đầu</span>
+                        </div>
+                        <div class="d-flex align-items-center mb-4">
+                            <i class="fa fa-check bg-light text-primary btn-sm-square rounded-circle me-3 fw-bold"></i>
+                            <span>Hàng nhập 100% chính hãng</span>
+                        </div>
+                        <a class="btn btn-primary py-3 px-4" href="">Xem chi tiết</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <!-- About End -->
+    <!-- Facts Start -->
+    <div class="container-xxl bg-light py-5 my-5">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-4 col-md-6 text-center wow fadeIn" data-wow-delay="0.1s">
+                    <img class="img-fluid mb-4" src="img/icon-9.png" alt="">
+                    <h1 class="display-4" data-toggle="counter-up">152000</h1>
+                    <p class="fs-5 text-primary mb-0">Thời trang</p>
+                </div>
+                <div class="col-lg-4 col-md-6 text-center wow fadeIn" data-wow-delay="0.3s">
+                    <img class="img-fluid mb-4" src="img/icon-10.png" alt="">
+                    <h1 class="display-4" data-toggle="counter-up">237520</h1>
+                    <p class="fs-5 text-primary mb-0">Dược mỹ phẩm</p>
+                </div>
+                <div class="col-lg-4 col-md-6 text-center wow fadeIn" data-wow-delay="0.5s">
+                    <img class="img-fluid mb-4" src="img/icon-2.png" alt="">
+                    <h1 class="display-4" data-toggle="counter-up">126510</h1>
+                    <p class="fs-5 text-primary mb-0">Sách</p>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+    <!-- Facts End -->
+    <!-- Features Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                <h1 class="display-6">Tại bạn chọn Berry Shop</h1>
+                <p class="text-primary fs-5 mb-5">Chất lượng, Nhiệt Tình, Tận Tâm</p>
+            </div>
+            <div class="row g-5">
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="d-flex align-items-start">
+                        <img class="img-fluid flex-shrink-0" src="img/icon-7.png" alt="">
+                        <div class="ps-4">
+                            <h5 class="mb-3">Tìm kiếm dể dàng</h5>
+                            <span>
+                                Tìm kiểm sản phẩm nhanh, dể dàng và đa dạng
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="d-flex align-items-start">
+                        <img class="img-fluid flex-shrink-0" src="img/icon-6.png" alt="">
+                        <div class="ps-4">
+                            <h5 class="mb-3">An toàn và Bảo mật</h5>
+                            <span>
+                                Thông tin khách hàng được bảo mật theo chuẩn bảo mật quốc tế
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="d-flex align-items-start">
+                        <img class="img-fluid flex-shrink-0" src="img/icon-5.png" alt="">
+                        <div class="ps-4">
+                            <h5 class="mb-3">Sản phẩm đa dạng</h5>
+                            <span>
+                                Shop luôn cập nhật sản phẩm theo xu hướng các các nền tảng mạng xã hội như: Facebook, Instagram, Tiktok ,...
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="d-flex align-items-start">
+                        <img class="img-fluid flex-shrink-0" src="img/icon-4.png" alt="">
+                        <div class="ps-4">
+                            <h5 class="mb-3">Tư vấn nhiệt tình</h5>
+                            <span>
+                                Shop luôn có đội ngũ nhân viên tư vấn phục vụ khách hàng 24/7
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="d-flex align-items-start">
+                        <img class="img-fluid flex-shrink-0" src="img/icon-3.png" alt="">
+                        <div class="ps-4">
+                            <h5 class="mb-3">Giao hàng hoả tốc</h5>
+                            <span>
+                                Bạn chỉ việc ngồi tại chỗ sản phẩm sẽ đến bạn nhanh tức khắc
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="d-flex align-items-start">
+                        <img class="img-fluid flex-shrink-0" src="img/icon-8.png" alt="">
+                        <div class="ps-4">
+                            <h5 class="mb-3">Thao tác dể dàng</h5>
+                            <span>
+                                Website được thiết kế dể dàng giúp bạn thuận tiện trong việc tìm và đặt hàng.
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Features End -->
+    <!-- Service Start -->
+    <div class="container-xxl bg-light py-5 my-5">
+        <div class="container py-5">
+            <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                <h1 class="display-6">Dịch vụ</h1>
+                <p class="text-primary fs-5 mb-5">Tìm, Đặt hàng, Giao hàng và Đổi trả</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="service-item bg-white p-5">
+                        <img class="img-fluid mb-4" src="img/icon-7.png" alt="">
+                        <h5 class="mb-3">Xem sản phẩm</h5>
+                        <p>
+                            Website sẽ hiển thị tất cả sản phẩm bạn có thể tìm theo danh mục
+                            sản phẩm để thuận tiện hơn trong quá trình xem mặt hàng.
+                        </p>
+                        <a href="">Xem thêm<i class="fa fa-arrow-right ms-2"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="service-item bg-white p-5">
+                        <img class="img-fluid mb-4" src="img/icon-3.png" alt="">
+                        <h5 class="mb-3">Xem chi tiết sản phẩm</h5>
+                        <p>
+                            Bạn chỉ cần nhấn vào sản phẩm để xem chi tiết sản phẩm đó.
+                        </p>
+                        <a href="">Xem thêm <i class="fa fa-arrow-right ms-2"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="service-item bg-white p-5">
+                        <img class="img-fluid mb-4" src="img/icon-9.png" alt="">
+                        <h5 class="mb-3">Thêm vào giỏ hàng</h5>
+                        <p>
+                            Khi tìm được sản phẩm ưng ý bạn có thể thêm vào giỏ hàng để đặt hàng hoặc để đó đặt sau.
+                        </p>
+                        <a href="">Xem thêm <i class="fa fa-arrow-right ms-2"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="service-item bg-white p-5">
+                        <img class="img-fluid mb-4" src="img/icon-5.png" alt="">
+                        <h5 class="mb-3">Đặt hàng</h5>
+                        <p>
+                            Bạn cần chọn những sản phẩm muốn mua và phương thức thanh toán và đặt hàng.
+                        </p>
+                        <a href="">Xem thêm <i class="fa fa-arrow-right ms-2"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="service-item bg-white p-5">
+                        <img class="img-fluid mb-4" src="img/icon-2.png" alt="">
+                        <h5 class="mb-3">Giao hàng</h5>
+                        <p>
+                            Đơn hàng sẽ được giao sau khi bạn đặt hàng và xác nhận thanh toán.
+                        </p>
+                        <a href="">Xem thêm <i class="fa fa-arrow-right ms-2"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="service-item bg-white p-5">
+                        <img class="img-fluid mb-4" src="img/icon-8.png" alt="">
+                        <h5 class="mb-3">Đổi / Trả hàng</h5>
+                        <p>
+                            Khi sản phẩm không đúng hoặc giao hàng sai bạn có thể đổi / trả hàng
+                        </p>
+                        <a href="">Xem thêm <i class="fa fa-arrow-right ms-2"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Service End -->
+    <!-- Roadmap Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                <h1 class="display-6">Thông tin khác về Shop</h1>
+                <p class="text-primary fs-5 mb-5">Giúp bạn hiểu thêm về Shop</p>
+            </div>
+            <div class="owl-carousel roadmap-carousel wow fadeInUp" data-wow-delay="0.1s">
+                <div class="roadmap-item">
+                    <div class="roadmap-point"><span></span></div>
+                    <h5>Phòng quần áo</h5>
+                    <span>Chuyên chứa sản phẩm quần áo</span>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-point"><span></span></div>
+                    <h5>Phòng thiết bị điện tử</h5>
+                    <span>Chuyên chứa các mặt hàng thiết bị điện tử</span>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-point"><span></span></div>
+                    <h5>Phòng sách</h5>
+                    <span>Chuyên chứa các mặt hàng về sách</span>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-point"><span></span></div>
+                    <h5>Phòng dược mỹ phẩm</h5>
+                    <span>Chuyên chứa các mặt hàng về mỹ phẩm</span>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-point"><span></span></div>
+                    <h5>Phòng thiết bị gia dụng</h5>
+                    <span>Chuyên chứa các mặt hàng về thiết bị gia dụng</span>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-point"><span></span></div>
+                    <h5>Phòng ôtô / xe máy</h5>
+                    <span>Chuyên chứa các mặt hàng về ô tô xe máy</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Roadmap End -->
+    <!-- Token Sale Start -->
+    @*<div class="container-xxl bg-light py-5 my-5">
+            <div class="container py-5">
+                <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                    <h1 class="display-6">Token Sale</h1>
+                    <p class="text-primary fs-5 mb-5">Token Sale Countdown</p>
+                </div>
+                <div class="row g-3">
+                    <div class="col-6 col-md-3 wow fadeIn" data-wow-delay="0.1s">
+                        <div class="bg-white text-center p-3">
+                            <h1 class="mb-0">0</h1>
+                            <span class="text-primary fs-5">Days</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 wow fadeIn" data-wow-delay="0.3s">
+                        <div class="bg-white text-center p-3">
+                            <h1 class="mb-0">0</h1>
+                            <span class="text-primary fs-5">Hours</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 wow fadeIn" data-wow-delay="0.5s">
+                        <div class="bg-white text-center p-3">
+                            <h1 class="mb-0">0</h1>
+                            <span class="text-primary fs-5">Minutes</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 wow fadeIn" data-wow-delay="0.7s">
+                        <div class="bg-white text-center p-3">
+                            <h1 class="mb-0">0</h1>
+                            <span class="text-primary fs-5">Seconds</span>
+                        </div>
+                    </div>
+                    <div class="col-12 text-center py-4">
+                        <a class="btn btn-primary py-3 px-4" href="">Buy Token</a>
+                    </div>
+                    <div class="col-12 text-center">
+                        <img class="img-fluid m-1" src="img/payment-1.png" alt="" style="width: 50px;">
+                        <img class="img-fluid m-1" src="img/payment-2.png" alt="" style="width: 50px;">
+                        <img class="img-fluid m-1" src="img/payment-3.png" alt="" style="width: 50px;">
+                        <img class="img-fluid m-1" src="img/payment-4.png" alt="" style="width: 50px;">
+                    </div>
+                </div>
+            </div>
+        </div>*@
+    <!-- Token Sale Start -->
+    <!-- FAQs Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                <h1 class="display-6">FAQs</h1>
+                <p class="text-primary fs-5 mb-5">Các câu hỏi thường gặp</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item wow fadeInUp" data-wow-delay="0.1s">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Sự ra đời của website?
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    ...
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item wow fadeInUp" data-wow-delay="0.2s">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Cách đặt hàng trên website?
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    ...
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item wow fadeInUp" data-wow-delay="0.3s">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Tôi có thể mua trực tiếp tại Shop?
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    ...
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item wow fadeInUp" data-wow-delay="0.4s">
+                            <h2 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                                    Website có hỗ trợ trên thiết bị di động không?
+                                </button>
+                            </h2>
+                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    ...
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item wow fadeInUp" data-wow-delay="0.5s">
+                            <h2 class="accordion-header" id="headingFive">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                    Khi cần hỗ trợ tôi phải làm như thế nào?
+                                </button>
+                            </h2>
+                            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    ...
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item wow fadeInUp" data-wow-delay="0.6s">
+                            <h2 class="accordion-header" id="headingSix">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                    Chính sách đổi trả sản phẩm của shop?
+                                </button>
+                            </h2>
+                            <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    ...
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item wow fadeInUp" data-wow-delay="0.7s">
+                            <h2 class="accordion-header" id="headingSeven">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                                    Shop có tổng cộng bao nhiêu loại mặt hàng?
+                                </button>
+                            </h2>
+                            <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    ...
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item wow fadeInUp" data-wow-delay="0.8s">
+                            <h2 class="accordion-header" id="headingEight">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                                    Chính sách bảo mặt và quyền riêng tư?
+                                </button>
+                            </h2>
+                            <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    ...
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

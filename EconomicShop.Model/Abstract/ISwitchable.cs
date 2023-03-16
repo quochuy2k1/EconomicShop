@@ -2,6 +2,6 @@
 {
     public interface ISwitchable
     {
-        bool Status { get; set; }
+        bool? Status { get; set; }
     }
 }

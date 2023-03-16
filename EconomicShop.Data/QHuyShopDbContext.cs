@@ -1,15 +1,12 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
-using EconomicShop.Model.Models;
-using System;
-using System.Collections.Generic;
+﻿using EconomicShop.Model.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection.Emit;
+using System.Xml;
 
 namespace EconomicShop.Data
 {
-    public class QHuyShopDbContext :  IdentityDbContext<ApplicationUser>
+    public class QHuyShopDbContext : IdentityDbContext<ApplicationUser>
     {
         public QHuyShopDbContext() : base("QhuyShop")
         {
@@ -27,6 +24,7 @@ namespace EconomicShop.Data
         public DbSet<PostCategory> PostCategories { set; get; }
         public DbSet<PostTag> PostTags { set; get; }
         public DbSet<Product> Products { set; get; }
+        public DbSet<Cart> Carts { set; get; }
 
         public DbSet<ProductCategory> ProductCategories { set; get; }
         public DbSet<ProductTag> ProductTags { set; get; }
@@ -36,8 +34,6 @@ namespace EconomicShop.Data
 
         public DbSet<Tag> Tags { set; get; }
 
-
-
         public DbSet<VisitorStatistic> VisitorStatistics { set; get; }
         public DbSet<Error> Errors { set; get; }
 
@@ -46,21 +42,22 @@ namespace EconomicShop.Data
         public DbSet<ApplicationRoleGroup> ApplicationRoleGroups { set; get; }
         public DbSet<ApplicationUserGroup> ApplicationUserGroups { set; get; }
 
-
         public static QHuyShopDbContext Create()
         {
             return new QHuyShopDbContext();
         }
 
-
         protected override void OnModelCreating(DbModelBuilder builder)
         {
+            //
+
+            builder.Entity<Cart>().Property(e => e.Price).HasPrecision(18, 4);
+            builder.Entity<Cart>().Property(e => e.Quantity).HasColumnType("smallint");
             //base.OnModelCreating(builder);
             builder.Entity<IdentityUserRole>().HasKey(i => new { i.UserId, i.RoleId }).ToTable("ApplicationUserRoles");
             builder.Entity<IdentityUserLogin>().HasKey(i => i.UserId).ToTable("ApplicationUserLogins");
             builder.Entity<IdentityRole>().ToTable("ApplicationRoles");
             builder.Entity<IdentityUserClaim>().HasKey(i => i.UserId).ToTable("ApplicationUserClaims");
-
         }
     }
 }
